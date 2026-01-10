@@ -1,17 +1,106 @@
-.container {
-  max-width: 420px;
-  margin: auto;
+/* ========== LAYOUT UTAMA ========== */
+
+.app {
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0b1220, #0f172a);
+  color: #e5e7eb;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 260px;
+  background: #0f172a;
+  border-right: 1px solid rgba(255,255,255,0.05);
   padding: 20px;
 }
 
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1100px;
+.sidebar .brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.sidebar .brand img {
+  width: 40px;
+  height: 40px;
+}
+
+.sidebar .brand h1 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.sidebar nav button {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #cbd5f5;
+  padding: 12px 14px;
+  text-align: left;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.sidebar nav button.active,
+.sidebar nav button:hover {
+  background: linear-gradient(90deg,#2563eb,#4f46e5);
+  color: #fff;
+}
+
+/* ===== MAIN ===== */
+.main {
+  flex: 1;
+  padding: 24px;
+}
+
+/* ===== HEADER ===== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.header h2 {
+  font-size: 20px;
+}
+
+.logout-btn {
+  background: #ef4444;
+  border: none;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* ===== CONTENT ===== */
+.content {
+  display: grid;
+  gap: 20px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
   }
 
-  .grid-4 {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 16px;
+  .sidebar {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+  }
+
+  .sidebar nav {
+    display: flex;
+    gap: 10px;
+  }
+
+  .sidebar nav button {
+    white-space: nowrap;
   }
 }
