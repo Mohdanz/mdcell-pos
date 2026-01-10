@@ -96,14 +96,31 @@ input {
   position: relative;
 }
 
-.password-wrapper span {
+.toggle-password {
   position: absolute;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
   cursor: pointer;
-  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.toggle-password svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: #94a3b8;
+  stroke-width: 2;
+}
+
+.toggle-password:hover svg {
+  stroke: #22d3ee;
+}
+
 
 /* BUTTON */
 button {
@@ -124,3 +141,4 @@ button {
   font-size: 9px;
   color: #64748b;
 }
+
