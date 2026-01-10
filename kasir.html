@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Kasir</title>
+<link rel="stylesheet" href="assets/css/kasir.css">
+<link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body>
+<h2>Kasir Aktif</h2>
+
+<div class="card">
+  <h3>Isi Saldo</h3>
+  <input id="isiNominal" type="number" placeholder="Nominal Saldo">
+  <input id="isiBayar" type="number" placeholder="Total Bayar">
+  <button onclick="prosesIsiSaldo()">Proses Isi Saldo</button>
+</div>
+
+<div class="card">
+  <h3>Penarikan</h3>
+  <input id="tarikNominal" type="number" placeholder="Nominal Penarikan">
+  <input id="tarikFee" type="number" placeholder="Admin Fee">
+  <select id="tarikTipe">
+    <option value="ADMIN_POTONG">Admin Potong</option>
+    <option value="ADMIN_CASH">Admin Cash</option>
+  </select>
+  <button onclick="prosesPenarikan()">Proses Penarikan</button>
+</div>
+
+<button onclick="logout()">Logout</button>
+
+<script src="assets/js/core.js"></script>
+<script src="assets/js/kasir.js"></script>
+<script src="assets/js/transaksi.js"></script>
+</body>
+</html>
