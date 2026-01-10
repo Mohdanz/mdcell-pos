@@ -1,20 +1,25 @@
-if(localStorage.getItem("role")!=="kasir"){
+// PROTEKSI
+if(DB.get("auth").role!=="kasir"){
   location.href="index.html";
 }
 
-let total = Number(localStorage.getItem("kasirTotal")) || 0;
-document.getElementById("total").innerText = total;
+const state = DB.get("state");
 
-function tambah(){
-  const h = Number(harga.value);
-  total += h;
-  localStorage.setItem("kasirTotal", total);
+if(state.shiftStatus!=="open"){
+  document.body.innerHTML = `
+    <div style="padding:40px;text-align:center">
+      <h2 style="color:#facc15">SHIFT BELUM DIMULAI</h2>
+      <p>Hubungi Admin</p>
+    </div>
+  `;
+  throw new Error("Shift closed");
+}
 
-  const g = Number(localStorage.getItem("grandTotal")) || 0;
-  localStorage.setItem("grandTotal", g + h);
-
-  document.getElementById("total").innerText = total;
-  harga.value="";
+// contoh update uang laci (dipakai modul lain)
+function updateLaci(nominal){
+  const s = DB.get("state");
+  s.uangLaci += nominal;
+  DB.set("state",s);
 }
 
 function logout(){
