@@ -5,7 +5,7 @@ loginForm.onsubmit = e => {
 
   if(u==="admin" && p==="admin123"){
     localStorage.setItem("role","admin");
-    location.href="admin.html";
+    location.href="index.html";
   } 
   else if(u==="kasir" && p==="kasir123"){
     localStorage.setItem("role","kasir");
