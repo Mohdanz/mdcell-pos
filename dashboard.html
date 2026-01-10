@@ -2,79 +2,39 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard | MD CELL POS</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- CSS -->
+  <title>MD CELL POS - Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
-  <link rel="stylesheet" href="assets/css/components.css">
 </head>
+
 <body>
 
-<div class="app">
+<script>
+  if (localStorage.getItem("mdcell_login") !== "true") {
+    alert("Silakan login terlebih dahulu");
+    window.location.replace("./index.html");
+  }
+</script>
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="brand">
-      <img src="assets/img/logo.png" alt="logo">
-      <h1>MD CELL</h1>
-    </div>
+<div class="dashboard">
+  <header>
+    <h2>MD CELL</h2>
+    <button onclick="logout()">Keluar</button>
+  </header>
 
-    <nav>
-      <button class="active">📊 Dashboard</button>
-      <button>💳 E-Wallet</button>
-      <button>⚙️ Pengaturan</button>
-      <button>🚪 Logout</button>
-    </nav>
-  </aside>
+  <section class="cards">
+    <div class="card">Saldo Awal<br><b>Rp 1.000.000</b></div>
+    <div class="card">Uang Laci<br><b>Rp 1.000.000</b></div>
+    <div class="card">E-Wallet<br><b>0 Akun</b></div>
+    <div class="card">Stok Item<br><b>0 Item</b></div>
+  </section>
 
-  <!-- MAIN -->
-  <main class="main">
-
-    <!-- HEADER -->
-    <div class="header">
-      <h2>Toko Serba Ada</h2>
-      <button class="logout-btn">Keluar</button>
-    </div>
-
-    <!-- CONTENT -->
-    <div class="content">
-
-      <!-- CARD INFO -->
-      <div class="card-grid">
-        <div class="card">
-          <div class="card-title">Saldo Awal</div>
-          <div class="card-value">Rp 1.000.000</div>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Uang Laci</div>
-          <div class="card-value">Rp 1.000.000</div>
-        </div>
-
-        <div class="card">
-          <div class="card-title">E-Wallet</div>
-          <div class="card-value">0 Akun</div>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Stok Item</div>
-          <div class="card-value">0 Item</div>
-        </div>
-      </div>
-
-      <!-- SHIFT -->
-      <div class="card">
-        <h3>SHIFT BELUM DIMULAI</h3>
-        <p>Klik tombol START untuk memulai</p>
-        <button class="btn-primary">START</button>
-      </div>
-
-    </div>
-  </main>
-
+  <section class="shift">
+    <h3>SHIFT BELUM DIMULAI</h3>
+    <button onclick="startShift()">START SHIFT</button>
+  </section>
 </div>
 
+<script src="assets/js/auth.js"></script>
 </body>
 </html>
