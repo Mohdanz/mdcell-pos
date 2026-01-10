@@ -1,21 +1,74 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Admin</title>
+<title>MD CELL | Admin Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="assets/css/admin.css">
 <link rel="stylesheet" href="assets/css/components.css">
 </head>
 <body>
-<div class="shift">
-  <h2 id="shiftTitle">SHIFT BELUM DIMULAI</h2>
-  <p id="shiftDesc">Klik START SHIFT</p>
-  <button id="btnShift">▶ START SHIFT</button>
-  <p>Saldo Awal: <span id="saldoAwal">Rp 0</span></p>
+
+<header class="topbar">
+  <div class="brand">
+    <img src="assets/img/logo.png" alt="MD CELL">
+    <div>
+      <h1>MD CELL</h1>
+      <span>Admin Panel</span>
+    </div>
+  </div>
+  <div class="welcome">Selamat datang, Admin!</div>
+</header>
+
+<section class="stats">
+  <div class="stat-card">
+    <p>Saldo Awal</p>
+    <h2 id="saldoAwal">Rp 0</h2>
+  </div>
+  <div class="stat-card green">
+    <p>Uang Laci</p>
+    <h2 id="uangLaci">Rp 0</h2>
+  </div>
+  <div class="stat-card">
+    <p>E-Wallet</p>
+    <h2>0 Akun</h2>
+  </div>
+  <div class="stat-card">
+    <p>Stok Item</p>
+    <h2>0 Item</h2>
+  </div>
+</section>
+
+<nav class="menu">
+  <button class="active">Dashboard</button>
+  <button>Pengaturan</button>
+  <button>Rekap Data</button>
+</nav>
+
+<section class="shift-box">
+  <div class="shift-header">
+    <h2 id="shiftTitle">SHIFT BELUM DIMULAI</h2>
+    <button id="btnShift" class="btn-start">START</button>
+  </div>
+  <p class="shift-desc" id="shiftDesc">Klik tombol START untuk memulai</p>
+
+  <div class="shift-info">
+    <div>
+      <span>Shift Sebelumnya</span>
+      <strong id="shiftPrev">1</strong>
+    </div>
+    <div>
+      <span>Saldo Awal</span>
+      <strong id="shiftSaldo">Rp 0</strong>
+    </div>
+  </div>
+</section>
+
+<div class="actions">
+  <button onclick="exportRiwayatExcel()">Export Excel</button>
+  <button class="logout" onclick="logout()">Logout</button>
 </div>
-<button onclick="exportRiwayatExcel()">Export Excel</button>
-<button onclick="logout()">Logout</button>
+
 <script src="assets/js/core.js"></script>
 <script src="assets/js/admin.js"></script>
 <script src="assets/js/export.js"></script>
