@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>MD CELL POS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -13,112 +13,30 @@
 </head>
 <body>
 
-<!-- ================= LOGIN ================= -->
-<div id="loginPage" class="login-page">
+<div class="login-wrapper">
   <div class="login-card">
-    <h1>MD CELL</h1>
-    <p>Sistem Kasir Pintar</p>
 
-    <input id="username" placeholder="Username">
-    <input id="password" type="password" placeholder="Password">
+    <div class="logo">
+      <div class="logo-icon">📱</div>
+      <h1>Toko Serba Ada</h1>
+      <p>Sistem Kasir Pintar</p>
+      <span class="status">● Online & Ready</span>
+    </div>
 
-    <button onclick="login()">Masuk</button>
+    <div class="form">
+      <label>Username</label>
+      <input type="text" id="username" placeholder="Masukkan username">
 
-    <small>Developed by Muhammad Dandi</small>
+      <label>Password</label>
+      <input type="password" id="password" placeholder="Masukkan password">
+
+      <button onclick="login()">⚡ Masuk ke Sistem</button>
+    </div>
+
+    <small>© 2024 Kasir Pintar. All rights reserved.</small>
   </div>
 </div>
 
-<!-- ================= APP ================= -->
-<div id="app" class="app hidden">
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <h2 id="roleText">ADMIN</h2>
-
-    <button onclick="route('dashboard')">📊 Dashboard</button>
-    <button class="admin-only" onclick="route('wallet')">💳 E-Wallet</button>
-    <button class="admin-only" onclick="route('settings')">⚙️ Pengaturan</button>
-    <button onclick="logout()">🚪 Logout</button>
-  </aside>
-
-  <!-- MAIN -->
-  <main class="main">
-
-    <!-- HEADER -->
-    <header class="header">
-      <div>
-        <h3>Toko Serba Ada</h3>
-        <small>Admin Panel</small>
-      </div>
-      <button class="logout" onclick="logout()">Keluar</button>
-    </header>
-
-    <!-- ================= DASHBOARD ================= -->
-    <section id="dashboard" class="page">
-
-      <div class="cards">
-        <div class="card">
-          <span>Saldo Awal</span>
-          <strong id="saldoAwal">Rp 0</strong>
-        </div>
-        <div class="card">
-          <span>Uang Laci</span>
-          <strong class="green" id="uangLaci">Rp 0</strong>
-        </div>
-        <div class="card">
-          <span>E-Wallet</span>
-          <strong id="totalWallet">0 Akun</strong>
-        </div>
-        <div class="card">
-          <span>Stok Item</span>
-          <strong id="totalItem">0 Item</strong>
-        </div>
-      </div>
-
-      <!-- SHIFT -->
-      <div class="shift-box">
-        <h2>SHIFT BELUM DIMULAI</h2>
-        <p>Klik tombol START untuk memulai</p>
-
-        <div class="shift-info">
-          <div>
-            <small>Shift Sebelumnya</small>
-            <strong id="shiftCount">0</strong>
-          </div>
-          <div>
-            <small>Saldo Awal</small>
-            <strong class="green">Rp 0</strong>
-          </div>
-        </div>
-
-        <button class="start" onclick="startShift()">START</button>
-      </div>
-
-    </section>
-
-    <!-- ================= WALLET ================= -->
-    <section id="wallet" class="page hidden">
-      <h2>E-Wallet</h2>
-      <p>Belum ada data</p>
-    </section>
-
-    <!-- ================= SETTINGS ================= -->
-    <section id="settings" class="page hidden">
-      <h2>Pengaturan</h2>
-      <input placeholder="Saldo Awal">
-      <button>Simpan</button>
-    </section>
-
-  </main>
-</div>
-
-<!-- ================= JS ================= -->
-<script src="assets/js/state.js"></script>
-<script src="assets/js/ui.js"></script>
 <script src="assets/js/auth.js"></script>
-<script src="assets/js/shift.js"></script>
-<script src="assets/js/wallet.js"></script>
-<script src="assets/js/app.js"></script>
-
 </body>
 </html>
