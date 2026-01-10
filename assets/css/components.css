@@ -1,0 +1,29 @@
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.4);
+}
+
+.btn {
+  border: none;
+  border-radius: 14px;
+  padding: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--primary-grad);
+  color: white;
+}
+
+.badge {
+  display: inline-flex;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(69,212,131,.15);
+  color: var(--success);
+  border-radius: 999px;
+  font-size: 12px;
+}
