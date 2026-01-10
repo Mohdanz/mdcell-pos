@@ -25,10 +25,9 @@ form.onsubmit = e => {
       return;
     }
 
-    // SIMULASI LOGIN (ganti ke API / Laravel)
+    // SIMULASI LOGIN
     if (user === 'admin' && pass === 'admin') {
       alert('Login berhasil');
-      // window.location.href = 'dashboard.html';
     } else {
       error.textContent = 'Username atau password salah';
       resetBtn();
