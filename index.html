@@ -18,12 +18,12 @@
       <span class="dot"></span> Online & Ready
     </div>
 
-    <form onsubmit="login(event)">
+    <form id="loginForm">
       <label>Username</label>
-      <input type="text" required>
+      <input type="text" id="username" required>
 
       <label>Password</label>
-      <input type="password" required>
+      <input type="password" id="password" required>
 
       <button type="submit">Masuk ke Sistem</button>
     </form>
@@ -32,11 +32,6 @@
   </div>
 </div>
 
-<script>
-function login(e){
-  e.preventDefault();
-  alert("Login berhasil (demo)");
-}
-</script>
+<script src="assets/js/login.js"></script>
 </body>
 </html>
