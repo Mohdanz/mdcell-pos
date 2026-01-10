@@ -1,45 +1,60 @@
-// proteksi
-if(localStorage.getItem("role")!=="admin"){
+// PROTEKSI
+if(DB.get("auth").role!=="admin"){
   location.href="index.html";
 }
 
-// init
-if(!localStorage.getItem("shift")){
-  localStorage.setItem("shift","closed");
-}
+const btnShift   = document.getElementById("btnShift");
+const shiftTitle = document.getElementById("shiftTitle");
+const shiftDesc  = document.getElementById("shiftDesc");
+const saldoView  = document.getElementById("saldoAwal");
 
-const shiftStatus = document.getElementById("shiftStatus");
-const startBtn = document.getElementById("startShift");
+function renderAdmin(){
+  const s = DB.get("state");
 
-// render
-function renderShift(){
-  const s = localStorage.getItem("shift");
-  if(s==="open"){
-    shiftStatus.innerText = "SHIFT AKTIF";
-    startBtn.innerText = "STOP";
-    startBtn.style.background = "#ef4444";
+  saldoView.innerText = "Rp " + s.saldoAwal.toLocaleString("id-ID");
+
+  if(s.shiftStatus==="open"){
+    shiftTitle.innerText = "SHIFT AKTIF";
+    shiftDesc.innerText  = "Kasir dapat melakukan transaksi";
+    btnShift.innerText   = "⏹ TUTUP SHIFT";
   }else{
-    shiftStatus.innerText = "SHIFT BELUM DIMULAI";
-    startBtn.innerText = "START";
-    startBtn.style.background = "#22c55e";
+    shiftTitle.innerText = "SHIFT BELUM DIMULAI";
+    shiftDesc.innerText  = "Klik START SHIFT untuk memulai";
+    btnShift.innerText   = "▶ START SHIFT";
   }
 }
 
-startBtn.onclick = () => {
-  if(localStorage.getItem("shift")==="open"){
-    localStorage.setItem("shift","closed");
+btnShift.onclick = () => {
+  const s = DB.get("state");
+
+  if(s.shiftStatus==="closed"){
+    const saldo = Number(prompt("Masukkan Saldo Awal","0"));
+    if(isNaN(saldo)) return;
+
+    // arsip transaksi lama
+    if(DB.get("transactions").length){
+      DB.get("archives").push({
+        shiftId:s.shiftId,
+        data:DB.get("transactions")
+      });
+      DB.set("archives", DB.get("archives"));
+    }
+
+    s.shiftStatus = "open";
+    s.shiftId++;
+    s.saldoAwal = saldo;
+    s.uangLaci  = saldo;
+    DB.set("transactions",[]);
   }else{
-    localStorage.setItem("shift","open");
-    localStorage.setItem("shiftStart",Date.now());
+    s.shiftStatus = "closed";
+    s.uangLaci = s.saldoAwal;
   }
-  renderShift();
+
+  DB.set("state",s);
+  renderAdmin();
 };
 
-renderShift();
-
-// total admin
-const total = Number(localStorage.getItem("grandTotal")) || 0;
-document.getElementById("adminTotal").innerText = "Rp "+total;
+renderAdmin();
 
 function logout(){
   localStorage.clear();
