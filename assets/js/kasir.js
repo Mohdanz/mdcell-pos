@@ -1,5 +1,5 @@
 if(localStorage.getItem("role")!=="kasir"){
-  location.href="login.html";
+  location.href="index.html";
 }
 
 let total = Number(localStorage.getItem("kasirTotal")) || 0;
@@ -19,5 +19,5 @@ function tambah(){
 
 function logout(){
   localStorage.clear();
-  location.href="login.html";
+  location.href="index.html";
 }
