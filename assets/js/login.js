@@ -6,10 +6,12 @@ loginForm.onsubmit = e => {
   if(u==="admin" && p==="admin123"){
     localStorage.setItem("role","admin");
     location.href="admin.html";
-  } else if(u==="kasir" && p==="kasir123"){
+  } 
+  else if(u==="kasir" && p==="kasir123"){
     localStorage.setItem("role","kasir");
     location.href="kasir.html";
-  } else {
+  } 
+  else {
     alert("Login salah");
   }
 };
