@@ -2,148 +2,22 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Login | MD CELL POS</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- CSS -->
+  <title>MD CELL - Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-
-  <style>
-    /* LOGIN LAYOUT (khusus index) */
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      background: radial-gradient(circle at top, #1e3a8a, #020617);
-    }
-
-    .login-card {
-      width: 100%;
-      max-width: 380px;
-      background: rgba(15, 23, 42, 0.85);
-      border-radius: 16px;
-      padding: 28px;
-      box-shadow: 0 20px 60px rgba(0,0,0,.6);
-      backdrop-filter: blur(10px);
-    }
-
-    .login-logo {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 24px;
-    }
-
-    .login-logo img {
-      width: 64px;
-      height: 64px;
-      margin-bottom: 10px;
-    }
-
-    .login-logo h1 {
-      font-size: 22px;
-      margin: 0;
-    }
-
-    .badge-online {
-      margin-top: 6px;
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(34,197,94,.15);
-      color: #22c55e;
-    }
-
-    .form-group {
-      margin-bottom: 14px;
-    }
-
-    .form-group label {
-      font-size: 13px;
-      opacity: .8;
-    }
-
-    .form-group input {
-      width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      border: none;
-      background: #020617;
-      color: #fff;
-      outline: 2px solid transparent;
-    }
-
-    .form-group input:focus {
-      outline-color: #3b82f6;
-    }
-
-    .btn-login {
-      width: 100%;
-      padding: 12px;
-      border-radius: 12px;
-      border: none;
-      font-weight: 600;
-      background: linear-gradient(135deg,#38bdf8,#6366f1);
-      color: #020617;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    .copyright {
-      text-align: center;
-      font-size: 12px;
-      opacity: .5;
-      margin-top: 16px;
-    }
-  </style>
 </head>
-<body>
+<body class="login-page">
 
   <div class="login-card">
+    <h2>MD CELL</h2>
+    <p>Sistem Kasir Pintar</p>
 
-    <div class="login-logo">
-      <img src="assets/img/logo.png" alt="MD CELL">
-      <h1>MD CELL</h1>
-      <div class="badge-online">● Online & Ready</div>
-    </div>
+    <input id="username" placeholder="Username">
+    <input id="password" type="password" placeholder="Password">
 
-    <div class="form-group">
-      <label>Username</label>
-      <input type="text" id="username" placeholder="Masukkan username">
-    </div>
-
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" id="password" placeholder="Masukkan password">
-    </div>
-
-    <button class="btn-login" onclick="login()">⚡ Masuk ke Sistem</button>
-
-    <div class="copyright">
-      © 2024 Kasir Pintar. All rights reserved.
-    </div>
+    <button onclick="login()">Masuk ke Sistem</button>
   </div>
 
-  <!-- JS -->
-  <script>
-    function login() {
-      const user = document.getElementById('username').value;
-      const pass = document.getElementById('password').value;
-
-      if (!user || !pass) {
-        alert("Username & Password wajib diisi");
-        return;
-      }
-
-      // SIMULASI LOGIN (sementara)
-      localStorage.setItem("login", "true");
-      localStorage.setItem("role", "admin");
-
-      window.location.href = "dashboard.html";
-    }
-  </script>
-
+  <script src="assets/js/auth.js"></script>
 </body>
 </html>
