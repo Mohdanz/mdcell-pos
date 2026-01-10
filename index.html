@@ -2,46 +2,49 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title> MD CELL | Login</title>
-  <link rel="stylesheet" href="style.css">
+  <title>MD CELL | Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS LOGIN -->
+  <link rel="stylesheet" href="assets/css/login.css">
 </head>
 <body>
 
-<div class="login-card">
+  <div class="login-card">
 
-  <div class="app-icon">📱</div>
+    <div class="app-icon">📱</div>
 
-  <h1>MD CELL</h1>
-  <p class="subtitle">Sistem Kasir Pintar</p>
+    <h1>MD CELL</h1>
+    <p class="subtitle">Sistem Kasir Pintar</p>
 
-  <div class="status">
-    <span class="dot"></span> Online & Ready
-  </div>
-
-  <form id="loginForm">
-    <label>Username</label>
-    <input id="username" type="text" placeholder="Masukkan username">
-
-    <label>Password</label>
-    <div class="password-wrapper">
-      <input id="password" type="password" placeholder="Masukkan password">
-      <span id="togglePassword">👁</span>
+    <div class="status">
+      <span class="dot"></span> Online & Ready
     </div>
 
-    <div class="error" id="errorMsg"></div>
+    <form id="loginForm">
+      <label>Username</label>
+      <input id="username" type="text" placeholder="Masukkan username">
 
-    <button id="loginBtn" type="submit">
-      ⚡ Masuk ke Sistem
-    </button>
-  </form>
+      <label>Password</label>
+      <div class="password-wrapper">
+        <input id="password" type="password" placeholder="Masukkan password">
+        <span id="togglePassword">👁</span>
+      </div>
 
-  <div class="footer">
-    © 2026 Developers By Danz Corleone . All rights reserved.
+      <div class="error" id="errorMsg"></div>
+
+      <button id="loginBtn" type="submit">
+        ⚡ Masuk ke Sistem
+      </button>
+    </form>
+
+    <div class="footer">
+      © 2026 Developers By Danz Corleone. All rights reserved.
+    </div>
+
   </div>
 
-</div>
-
-<script src="script.js"></script>
+  <!-- JS LOGIN -->
+  <script src="assets/js/login.js"></script>
 </body>
 </html>
