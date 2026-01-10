@@ -1,165 +1,26 @@
 :root {
-  --bg-main: linear-gradient(135deg, #020617, #0f172a, #020617);
-  --card-bg: rgba(17, 24, 39, 0.85);
-  --primary: linear-gradient(135deg, #38bdf8, #6366f1);
-  --accent: #22c55e;
+  --bg-main: #0b1220;
+  --bg-card: #111827;
+  --bg-soft: #1f2937;
+
+  --primary: #3b82f6;
+  --secondary: #22c55e;
   --danger: #ef4444;
-  --text: #e5e7eb;
+
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+
+  --radius: 16px;
+  --radius-sm: 10px;
 }
 
 * {
   box-sizing: border-box;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
   margin: 0;
-  font-family: "Segoe UI", system-ui, sans-serif;
-  background: var(--bg-main);
-  color: var(--text);
-  min-height: 100vh;
-}
-
-/* ================= LOGIN ================= */
-.login-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-.login-card {
-  width: 100%;
-  max-width: 380px;
-  background: var(--card-bg);
-  padding: 28px;
-  border-radius: 18px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 20px 60px rgba(0,0,0,.6);
-  text-align: center;
-}
-
-.login-card h2 {
-  margin: 0;
-  font-size: 26px;
-}
-
-.login-card p {
-  opacity: .7;
-  margin-bottom: 20px;
-}
-
-.login-card input {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 12px;
-  border-radius: 12px;
-  border: none;
-  outline: none;
-  background: #020617;
-  color: white;
-  font-size: 15px;
-}
-
-.login-card input:focus {
-  outline: 2px solid #38bdf8;
-}
-
-.login-card button {
-  width: 100%;
-  padding: 14px;
-  border-radius: 14px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-  background: var(--primary);
-  transition: .3s;
-}
-
-.login-card button:hover {
-  transform: scale(1.03);
-}
-
-/* ================= DASHBOARD ================= */
-.dashboard {
-  padding: 20px;
-  max-width: 1100px;
-  margin: auto;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-header h2 {
-  margin: 0;
-}
-
-header button {
-  background: var(--danger);
-  border: none;
-  color: white;
-  padding: 10px 14px;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-/* Cards */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 15px;
-}
-
-.card {
-  background: var(--card-bg);
-  padding: 18px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.5);
-}
-
-.card b {
-  display: block;
-  margin-top: 6px;
-  color: var(--accent);
-  font-size: 18px;
-}
-
-/* Shift */
-.shift {
-  margin-top: 25px;
-  background: rgba(2,6,23,.9);
-  border: 2px solid #facc15;
-  padding: 22px;
-  border-radius: 18px;
-  text-align: center;
-}
-
-.shift h3 {
-  margin-top: 0;
-  color: #facc15;
-}
-
-.shift button {
-  margin-top: 12px;
-  padding: 12px 22px;
-  border-radius: 14px;
-  border: none;
-  font-size: 15px;
-  font-weight: bold;
-  background: var(--accent);
-  color: black;
-  cursor: pointer;
-}
-
-/* ================= MOBILE ================= */
-@media (max-width: 600px) {
-  header {
-    flex-direction: column;
-    gap: 10px;
-  }
+  background: radial-gradient(circle at top, #1e3a8a, var(--bg-main));
+  color: var(--text-main);
 }
