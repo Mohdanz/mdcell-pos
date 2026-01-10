@@ -1,31 +1,54 @@
+if(DB.get("auth").role!=="admin") location.href="index.html";
 
-if(DB.get("auth").role!=="admin")location.href="index.html";
-const btn=document.getElementById("btnShift"),title=document.getElementById("shiftTitle"),desc=document.getElementById("shiftDesc"),saldo=document.getElementById("saldoAwal");
-function ringkasanShift(id){
- const data=DB.get("archives").find(a=>a.shift===id)?.data||[];
- let isi=0,tarik=0,income=0;
- data.forEach(t=>{if(t.type==="ISI_SALDO")isi+=t.nominal;if(t.type==="PENARIKAN")tarik+=t.nominal;income+=t.income||0;});
- return{isi,tarik,income,total:data.length};
-}
+const sTitle = document.getElementById("shiftTitle");
+const sDesc  = document.getElementById("shiftDesc");
+const btn    = document.getElementById("btnShift");
+
 function render(){
- const s=DB.get("state");
- saldo.innerText="Rp "+s.saldoAwal;
- if(s.shiftStatus==="open"){title.innerText="SHIFT AKTIF";desc.innerText="Kasir dapat transaksi";btn.innerText="TUTUP SHIFT";}
- else{title.innerText="SHIFT BELUM DIMULAI";desc.innerText="Klik START SHIFT";btn.innerText="START SHIFT";}
+  const s = DB.get("state");
+  document.getElementById("saldoAwal").innerText =
+    "Rp " + s.saldoAwal.toLocaleString("id-ID");
+  document.getElementById("uangLaci").innerText =
+    "Rp " + s.uangLaci.toLocaleString("id-ID");
+  document.getElementById("shiftSaldo").innerText =
+    "Rp " + s.saldoAwal.toLocaleString("id-ID");
+
+  if(s.shiftStatus==="open"){
+    sTitle.innerText="SHIFT AKTIF";
+    sDesc.innerText="Kasir dapat melakukan transaksi";
+    btn.innerText="TUTUP";
+    btn.style.background="#ef4444";
+  }else{
+    sTitle.innerText="SHIFT BELUM DIMULAI";
+    sDesc.innerText="Klik tombol START untuk memulai";
+    btn.innerText="START";
+    btn.style.background="#22c55e";
+  }
 }
+
 btn.onclick=()=>{
- const s=DB.get("state");
- if(s.shiftStatus==="closed"){
-  const m=Number(prompt("Saldo Awal","0"));if(isNaN(m))return;
-  DB.get("archives").push({shift:s.shiftId,data:DB.get("transactions")});
-  DB.set("transactions",[]);
-  s.shiftStatus="open";s.shiftId++;s.saldoAwal=m;s.uangLaci=m;
- }else{
-  const r=ringkasanShift(s.shiftId);
-  alert(`RINGKASAN SHIFT\nTransaksi: ${r.total}\nIsi Saldo: ${r.isi}\nPenarikan: ${r.tarik}\nIncome: ${r.income}`);
-  s.shiftStatus="closed";s.uangLaci=s.saldoAwal;
- }
- DB.set("state",s);render();
+  const s = DB.get("state");
+  if(s.shiftStatus==="closed"){
+    const modal = Number(prompt("Masukkan Saldo Awal","0"));
+    if(isNaN(modal)) return;
+    DB.get("archives").push({shift:s.shiftId,data:DB.get("transactions")});
+    DB.set("transactions",[]);
+    s.shiftId++;
+    s.saldoAwal=modal;
+    s.uangLaci=modal;
+    s.shiftStatus="open";
+  }else{
+    alert("Shift ditutup");
+    s.shiftStatus="closed";
+    s.uangLaci=s.saldoAwal;
+  }
+  DB.set("state",s);
+  render();
 };
+
+function logout(){
+  DB.set("auth",{role:null});
+  location.href="index.html";
+}
+
 render();
-function logout(){DB.set("auth",{role:null});location.href="index.html";}
