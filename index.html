@@ -11,7 +11,12 @@
 
 <div class="wrapper">
   <div class="card">
-    <div class="icon">📱</div>
+
+    <!-- ICON MODERN (BUKAN BATA) -->
+    <div class="icon">
+      <span>MD</span>
+    </div>
+
     <h1>MD CELL</h1>
     <div class="sub">Sistem Kasir Pintar</div>
 
@@ -21,27 +26,31 @@
 
     <form id="loginForm">
       <label>Username</label>
-      <input type="text" id="username" required>
+      <input type="text" id="username" placeholder="Masukkan username" required>
 
       <label>Password</label>
       <div class="password-box">
-        <input type="password" id="password" required>
+        <input type="password" id="password" placeholder="Masukkan password" required>
         <span class="toggle" onclick="togglePassword()">👁</span>
       </div>
 
       <button type="submit">Masuk ke Sistem</button>
     </form>
 
-    <div class="footer">© 2026 Developers By Danz Corleone</div>
+    <!-- FOOTER HALUS -->
+    <div class="footer">
+      © 2026 MD CELL
+    </div>
+
   </div>
 </div>
 
-<!-- POPUP -->
+<!-- POPUP MINIMAL PRO -->
 <div class="popup" id="popup">
   <div class="popup-card">
     <h3 id="popupTitle"></h3>
     <p id="popupMsg"></p>
-    <button onclick="closePopup()">OK</button>
+    <button onclick="closePopup()">Lanjutkan</button>
   </div>
 </div>
 
