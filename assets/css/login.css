@@ -1,46 +1,126 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <title>MD CELL | Login</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
 
-  <link rel="stylesheet" href="assets/css/login.css">
-</head>
-<body>
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1e40af, #020617);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #e5e7eb;
+}
 
-  <div class="login-wrapper">
-    <div class="login-card">
+/* LOGIN CARD */
+.login-card {
+  width: 300px;
+  padding: 20px 18px;
+  background: linear-gradient(180deg, #0f172a, #020617);
+  border-radius: 18px;
+  box-shadow: 0 16px 36px rgba(0,0,0,.6);
+  text-align: center;
+}
 
-      <div class="app-icon">📱</div>
+/* ICON */
+.app-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg,#22d3ee,#8b5cf6);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  margin: auto;
+}
 
-      <h1>MD CELL</h1>
-      <p class="subtitle">Sistem Kasir Pintar</p>
+/* TITLE */
+h1 {
+  margin: 8px 0 0;
+  font-size: 18px;
+  color: #7dd3fc;
+}
 
-      <div class="status">
-        <span class="dot"></span> Online & Ready
-      </div>
+.subtitle {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
 
-      <form>
-        <label>Username</label>
-        <input type="text" placeholder="Masukkan username">
+/* STATUS */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(34,211,238,.15);
+  color: #67e8f9;
+  padding: 4px 9px;
+  border-radius: 999px;
+  font-size: 10px;
+  margin-bottom: 14px;
+}
 
-        <label>Password</label>
-        <div class="password-wrapper">
-          <input id="password" type="password" placeholder="Masukkan password">
-          <span id="togglePassword">👁</span>
-        </div>
+.dot {
+  width: 6px;
+  height: 6px;
+  background: #22d3ee;
+  border-radius: 50%;
+}
 
-        <button type="submit">⚡ Masuk ke Sistem</button>
-      </form>
+/* FORM */
+form {
+  text-align: left;
+}
 
-      <div class="footer">
-        © 2026 Developers By Danz Corleone
-      </div>
+label {
+  font-size: 10px;
+  color: #cbd5f5;
+  margin-bottom: 4px;
+  display: block;
+}
 
-    </div>
-  </div>
+input {
+  width: 100%;
+  padding: 9px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  color: #fff;
+  font-size: 11px;
+}
 
-  <script src="assets/js/login.js"></script>
-</body>
-</html>
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper span {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 11px;
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  background: linear-gradient(90deg,#22d3ee,#8b5cf6);
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 12px;
+  font-size: 9px;
+  color: #64748b;
+}
