@@ -1,11 +1,11 @@
 * {
   box-sizing: border-box;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: Inter, system-ui, sans-serif;
 }
 
 body {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
   background: radial-gradient(circle at top, #1e40af, #020617);
   display: flex;
   justify-content: center;
@@ -25,11 +25,11 @@ body {
 .app-icon {
   width: 64px;
   height: 64px;
-  background: linear-gradient(135deg,#22d3ee,#8b5cf6);
+  background: linear-gradient(135deg, #22d3ee, #8b5cf6);
   border-radius: 18px;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   font-size: 28px;
   margin: auto;
 }
@@ -50,7 +50,7 @@ h1 {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(34,211,238,.15);
+  background: rgba(34, 211, 238, .15);
   color: #67e8f9;
   padding: 6px 14px;
   border-radius: 999px;
@@ -70,20 +70,25 @@ form {
 }
 
 label {
+  display: block;
   font-size: 13px;
   color: #cbd5f5;
-  display: block;
   margin-bottom: 6px;
 }
 
 input {
   width: 100%;
   padding: 14px;
+  margin-bottom: 18px;
   border-radius: 14px;
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.1);
   color: #fff;
   font-size: 14px;
+}
+
+input::placeholder {
+  color: #94a3b8;
 }
 
 input:focus {
@@ -107,20 +112,19 @@ input:focus {
 .error {
   color: #f87171;
   font-size: 13px;
-  margin: 10px 0;
   min-height: 16px;
+  margin-bottom: 10px;
 }
 
 button {
   width: 100%;
   padding: 14px;
   border-radius: 16px;
-  background: linear-gradient(90deg,#22d3ee,#8b5cf6);
+  background: linear-gradient(90deg, #22d3ee, #8b5cf6);
   border: none;
   font-weight: 600;
   color: #fff;
   cursor: pointer;
-  margin-top: 6px;
 }
 
 button.loading {
