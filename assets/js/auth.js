@@ -1,17 +1,20 @@
-function login(){
-  const u=document.getElementById("login-user").value;
-  const p=document.getElementById("login-pass").value;
+function login() {
+  const user = document.getElementById('username').value;
+  const pass = document.getElementById('password').value;
 
-  if(u==="admin"&&p==="admin") state.role="ADMIN";
-  else if(u==="kasir"&&p==="kasir") state.role="KASIR";
-  else return alert("Login salah");
+  if (!user || !pass) {
+    alert('Username dan Password wajib diisi');
+    return;
+  }
 
-  document.getElementById("login-page").style.display="none";
-  document.getElementById("app").classList.remove("hidden");
-  document.getElementById("roleText").innerText=state.role;
-
-  if(state.role==="KASIR"){
-    document.querySelectorAll(".admin-only").forEach(e=>e.style.display="none");
+  // SIMULASI ROLE
+  if (user === 'admin') {
+    localStorage.setItem('role', 'admin');
+    alert('Login Admin Berhasil');
+    // window.location.href = 'admin.html';
+  } else {
+    localStorage.setItem('role', 'kasir');
+    alert('Login Kasir Berhasil');
+    // window.location.href = 'kasir.html';
   }
 }
-function logout(){location.reload()}
