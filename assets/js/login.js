@@ -26,7 +26,7 @@ document.getElementById("loginForm").addEventListener("submit", function(e){
   if(u === "admin" && p === "1234"){
     localStorage.setItem("login","true");
     showPopup("Login Berhasil", "Selamat datang di sistem MD CELL");
-    // window.location.href="kasir.html";
+    // window.location.href = "kasir.html";
   } else {
     showPopup("Login Gagal", "Username atau password salah");
   }
