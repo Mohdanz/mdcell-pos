@@ -1,54 +1,85 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MD CELL POS</title>
+  <meta charset="UTF-8">
+  <title>MD CELL – Sistem Kasir Pintar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
 <!-- LOADING -->
-<div id="app-loading">
+<div id="loading-screen" class="loading">
   <div class="spinner"></div>
-  <p>Memuat Sistem MD CELL...</p>
+  <p>Memuat sistem MD CELL…</p>
 </div>
 
 <!-- LOGIN -->
-<div id="login-page">
+<div id="login-page" class="login-page">
   <div class="login-card">
     <img src="assets/img/logo.png" class="logo">
-    <h1>MD CELL</h1>
-    <input id="login-user" placeholder="Username">
-    <input id="login-pass" type="password" placeholder="Password">
-    <button onclick="login()">LOGIN</button>
-    <small>Developed by Muhammad Dandi</small>
+    <h2>MD CELL</h2>
+
+    <input id="username" placeholder="Username">
+    <input id="password" type="password" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+
+    <footer>Developed by Muhammad Dandi</footer>
   </div>
 </div>
 
 <!-- APP -->
 <div id="app" class="hidden">
+
+  <!-- SIDEBAR -->
   <aside class="sidebar">
-    <h3 id="roleText"></h3>
-    <button onclick="route('dashboard')">Dashboard</button>
-    <button onclick="route('wallet')" class="admin-only">E-Wallet</button>
+    <h3 id="roleText">ROLE</h3>
+
+    <!-- ADMIN -->
+    <div class="admin-only">
+      <button onclick="route('dashboard')">Dashboard</button>
+      <button onclick="route('wallet')">E-Wallet</button>
+    </div>
+
+    <!-- KASIR -->
+    <div class="kasir-only">
+      <button onclick="route('dashboard')">Dashboard</button>
+    </div>
+
     <button onclick="logout()">Logout</button>
   </aside>
 
+  <!-- MAIN -->
   <main class="main">
-    <section id="dashboard" class="page"></section>
-    <section id="wallet" class="page hidden"></section>
+
+    <!-- SHIFT -->
+    <div class="shift-bar">
+      <span id="shift-status">SHIFT BELUM DIMULAI</span>
+      <button class="admin-only" onclick="startShift()">START SHIFT</button>
+      <button class="admin-only danger" onclick="endShift()">TUTUP SHIFT</button>
+    </div>
+
+    <!-- PAGES -->
+    <section id="dashboard" class="page">Dashboard</section>
+    <section id="wallet" class="page hidden">E-Wallet</section>
+
   </main>
 </div>
 
+<!-- ================= JS (URUTAN WAJIB) ================= -->
 <script src="assets/js/state.js"></script>
 <script src="assets/js/ui.js"></script>
 <script src="assets/js/auth.js"></script>
 <script src="assets/js/shift.js"></script>
 <script src="assets/js/wallet.js"></script>
 <script src="assets/js/app.js"></script>
+
 </body>
 </html>
