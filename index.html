@@ -2,22 +2,40 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>MD CELL - Login</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MD CELL | Login</title>
+
   <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
 </head>
-<body class="login-page">
+<body>
 
+<div class="login-page">
   <div class="login-card">
-    <h2>MD CELL</h2>
+    <h1>MD CELL</h1>
     <p>Sistem Kasir Pintar</p>
+    <span class="badge">Online & Ready</span>
 
-    <input id="username" placeholder="Username">
-    <input id="password" type="password" placeholder="Password">
+    <input id="username" placeholder="Masukkan username">
+    <input id="password" type="password" placeholder="Masukkan password">
 
     <button onclick="login()">Masuk ke Sistem</button>
   </div>
+</div>
 
-  <script src="assets/js/auth.js"></script>
+<script>
+function login() {
+  const u = document.getElementById("username").value;
+  const p = document.getElementById("password").value;
+
+  if (u === "admin" && p === "admin") {
+    alert("Login Admin Berhasil");
+    window.location.href = "dashboard.html";
+  } else {
+    alert("Username atau Password salah");
+  }
+}
+</script>
+
 </body>
 </html>
