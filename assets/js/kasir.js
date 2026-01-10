@@ -1,4 +1,6 @@
-if(localStorage.getItem("role")!=="kasir") location.href="login.html";
+if(localStorage.getItem("role")!=="kasir"){
+  location.href="login.html";
+}
 
 let total = Number(localStorage.getItem("kasirTotal")) || 0;
 document.getElementById("total").innerText = total;
