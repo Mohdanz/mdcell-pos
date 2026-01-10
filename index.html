@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>MD CELL POS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- TAILWIND -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- EXCEL -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: { sans: ['Inter', 'sans-serif'] }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-[#F5F7FA] text-slate-900 font-sans">
+
+<div id="app"></div>
+
+<script>
+/* ======================================================
+   GLOBAL STATE
+   ====================================================== */
+let currentUser = null; // { role: 'admin' | 'kasir' }
+let currentView = 'login';
+
+/* ======================================================
+   STORAGE KEYS
+   ====================================================== */
+const STORAGE = {
+  SETTINGS: 'md_settings',
+  SHIFT_ACTIVE: 'md_shift_active',
+  SHIFT_ARCHIVE: 'md_shift_archive',
+  EWALLETS: 'md_ewallets',
+  ITEMS: 'md_items',
+  TRANSACTIONS: 'md_transactions'
+};
+
+/* ======================================================
+   INIT DEFAULT DATA
+   ====================================================== */
+if (!localStorage.getItem(STORAGE.SETTINGS)) {
+  localStorage.setItem(STORAGE.SETTINGS, JSON.stringify({
+    saldoAwal: 500000,
+    storeName: 'MD CELL'
+  }));
+}
+if (!localStorage.getItem(STORAGE.SHIFT_ARCHIVE)) localStorage.setItem(STORAGE.SHIFT_ARCHIVE, JSON.stringify([]));
+if (!localStorage.getItem(STORAGE.EWALLETS)) localStorage.setItem(STORAGE.EWALLETS, JSON.stringify([]));
+if (!localStorage.getItem(STORAGE.ITEMS)) localStorage.setItem(STORAGE.ITEMS, JSON.stringify([]));
+if (!localStorage.getItem(STORAGE.TRANSACTIONS)) localStorage.setItem(STORAGE.TRANSACTIONS, JSON.stringify([]));
+
+/* ======================================================
+   HELPERS
+   ====================================================== */
+const rupiah = n => new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',minimumFractionDigits:0}).format(n||0);
+const get = k => JSON.parse(localStorage.getItem(k));
+const set = (k,v) => localStorage.setItem(k, JSON.stringify(v));
+const uid = p => p + '-' + Date.now();
+
+/* ======================================================
+   LOGIN
+   ====================================================== */
+function login(role) {
+  currentUser = { role };
+  currentView = 'dashboard';
+  render();
+}
+
+/* ======================================================
+   SHIFT
+   ====================================================== */
+function getActiveShift(){ return get(STORAGE.SHIFT_ACTIVE); }
+
+function startShift(){
+  if (getActiveShift()) return alert('Shift sudah aktif');
+  const s = get(STORAGE.SETTINGS);
+  set(STORAGE.SHIFT_ACTIVE,{
+    id: uid('SHIFT'),
+    saldoAwal: s.saldoAwal,
+    uangLaci: s.saldoAwal,
+    totalIncome: 0,
+    startedAt: new Date().toISOString()
+  });
+  render();
+}
+
+function stopShift(){
+  const shift = getActiveShift();
+  if (!shift) return;
+  if (!confirm('Tutup shift sekarang?')) return;
+  const arc = get(STORAGE.SHIFT_ARCHIVE);
+  arc.push({...shift, uangLaciAkhir: shift.uangLaci, closedAt: new Date().toISOString()});
+  set(STORAGE.SHIFT_ARCHIVE, arc);
+  localStorage.removeItem(STORAGE.SHIFT_ACTIVE);
+  render();
+}
+
+/* ======================================================
+   EWALLET
+   ====================================================== */
+function addEwallet(){
+  const name = document.getElementById('ew-name').value;
+  const bal = Number(document.getElementById('ew-bal').value);
+  if(!name||bal<0) return alert('Data tidak valid');
+  const list = get(STORAGE.EWALLETS);
+  list.push({id:uid('EW'),name,balance:bal});
+  set(STORAGE.EWALLETS,list);
+  render();
+}
+
+/* ======================================================
+   TRANSAKSI ISI SALDO
+   ====================================================== */
+function isiSaldo(){
+  const shift = getActiveShift();
+  if(!shift) return alert('SHIFT BELUM DIMULAI');
+  const ewId = document.getElementById('tx-ew').value;
+  const nominal = Number(document.getElementById('tx-nom').value);
+  const bayar = Number(document.getElementById('tx-bayar').value);
+
+  const ews = get(STORAGE.EWALLETS);
+  const ew = ews.find(e=>e.id===ewId);
+  if(!ew||ew.balance<nominal||bayar<nominal) return alert('Data salah');
+
+  ew.balance -= nominal;
+  shift.uangLaci += bayar;
+  shift.totalIncome += bayar-nominal;
+
+  const tx = get(STORAGE.TRANSACTIONS);
+  tx.push({id:uid('TX'),shiftId:shift.id,type:'TOPUP',nominal,bayar,income:bayar-nominal,time:new Date().toISOString()});
+
+  set(STORAGE.EWALLETS,ews);
+  set(STORAGE.SHIFT_ACTIVE,shift);
+  set(STORAGE.TRANSACTIONS,tx);
+  render();
+}
+
+/* ======================================================
+   EXPORT EXCEL
+   ====================================================== */
+function exportExcel(){
+  const tx = get(STORAGE.TRANSACTIONS);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(tx), 'Transaksi');
+  XLSX.writeFile(wb,'MD_CELL_REKAP.xlsx');
+}
+
+/* ======================================================
+   RENDER
+   ====================================================== */
+function render(){
+  const app = document.getElementById('app');
+  if(currentView==='login'){
+    app.innerHTML = `
+    <div class="min-h-screen flex items-center justify-center">
+      <div class="bg-white p-8 rounded-2xl shadow-sm w-full max-w-sm text-center space-y-4">
+        <h1 class="text-xl font-semibold">MD CELL POS</h1>
+        <button onclick="login('admin')" class="w-full py-3 bg-blue-600 text-white rounded-xl">Login Admin</button>
+        <button onclick="login('kasir')" class="w-full py-3 border rounded-xl">Login Kasir</button>
+        <p class="text-xs text-slate-400">Developed by Muhammad Dandi</p>
+      </div>
+    </div>`;
+    return;
+  }
+
+  const shift = getActiveShift();
+  app.innerHTML = `
+  <div class="min-h-screen p-6 space-y-6">
+    <div class="flex justify-between">
+      <h2 class="font-semibold">${currentUser.role.toUpperCase()} – MD CELL</h2>
+      <button onclick="currentView='login';render()" class="text-red-500">Logout</button>
+    </div>
+
+    ${currentUser.role==='admin'?`
+      <div class="bg-white p-4 rounded-xl shadow-sm space-y-3">
+        <p>Status Shift: <b>${shift?'AKTIF':'BELUM DIMULAI'}</b></p>
+        ${shift?`
+          <p>Uang Laci: ${rupiah(shift.uangLaci)}</p>
+          <button onclick="stopShift()" class="bg-red-500 text-white px-4 py-2 rounded-lg">Tutup Shift</button>
+        `:`<button onclick="startShift()" class="bg-blue-600 text-white px-4 py-2 rounded-lg">Start Shift</button>`}
+      </div>
+
+      <div class="bg-white p-4 rounded-xl shadow-sm space-y-3">
+        <h3 class="font-medium">Tambah E-Wallet</h3>
+        <input id="ew-name" placeholder="Nama" class="border p-2 rounded w-full">
+        <input id="ew-bal" type="number" placeholder="Saldo Awal" class="border p-2 rounded w-full">
+        <button onclick="addEwallet()" class="bg-blue-600 text-white px-4 py-2 rounded-lg">Simpan</button>
+      </div>
+
+      <button onclick="exportExcel()" class="bg-green-600 text-white px-4 py-2 rounded-lg">
+        Export Excel
+      </button>
+    `:`
+      <div class="bg-white p-4 rounded-xl shadow-sm space-y-3">
+        <h3 class="font-medium">Isi Saldo</h3>
+        <select id="tx-ew" class="border p-2 rounded w-full">
+          ${get(STORAGE.EWALLETS).map(e=>`<option value="${e.id}">${e.name}</option>`).join('')}
+        </select>
+        <input id="tx-nom" type="number" placeholder="Nominal" class="border p-2 rounded w-full">
+        <input id="tx-bayar" type="number" placeholder="Bayar" class="border p-2 rounded w-full">
+        <button onclick="isiSaldo()" class="bg-blue-600 text-white px-4 py-2 rounded-lg">Proses</button>
+      </div>
+    `}
+  </div>`;
+}
+
+render();
+</script>
+
+</body>
+</html>
