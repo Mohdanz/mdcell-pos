@@ -1,1 +1,85 @@
-button{padding:10px 16px;border-radius:14px;border:none;cursor:pointer}input,select{width:100%;padding:10px;margin-bottom:10px;border-radius:10px;border:none}
+/* ===== OVERLAY BLUR ===== */
+.popup-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(2,6,23,.65);
+  backdrop-filter:blur(14px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:99999;
+}
+
+/* ===== POPUP CARD ===== */
+.popup-card{
+  width:360px;
+  max-width:92%;
+  background:linear-gradient(180deg,#0f172a,#020617);
+  border-radius:20px;
+  padding:22px;
+  box-shadow:0 40px 120px rgba(0,0,0,.85);
+  color:#e5e7eb;
+  animation:popupFade .25s ease;
+}
+
+@keyframes popupFade{
+  from{opacity:0;transform:scale(.92)}
+  to{opacity:1;transform:scale(1)}
+}
+
+/* ===== TITLE ===== */
+.popup-title{
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:14px;
+}
+
+/* ===== ROW DETAIL ===== */
+.popup-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:13px;
+  padding:6px 0;
+  color:#cbd5f5;
+}
+
+.popup-row strong{
+  color:#22c55e;
+  font-weight:600;
+}
+
+/* ===== DIVIDER ===== */
+.popup-divider{
+  border:none;
+  height:1px;
+  background:#1e293b;
+  margin:12px 0;
+}
+
+/* ===== FOOTER ===== */
+.popup-footer{
+  display:flex;
+  gap:12px;
+  margin-top:18px;
+}
+
+/* ===== BUTTON ===== */
+.btn{
+  flex:1;
+  padding:13px;
+  border-radius:14px;
+  border:none;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.btn-cancel{
+  background:#334155;
+  color:#e5e7eb;
+}
+
+.btn-danger{
+  background:#ef4444;
+  color:#fff;
+}
