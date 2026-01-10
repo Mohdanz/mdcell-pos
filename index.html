@@ -1,54 +1,49 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MD CELL | Login</title>
-<link rel="stylesheet" href="assets/css/login.css">
-</head>
+  <meta charset="UTF-8">
+  <title>MD CELL | Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/login.css">
+</head>
 <body>
 
 <div class="login-wrapper">
   <div class="login-card">
 
-    <div class="logo">
-      <div class="logo-icon">📱</div>
-      <h1>MD CELL</h1>
-      <p>Sistem Kasir Pintar</p>
-    </div>
+    <div class="icon">📱</div>
+
+    <h1>MD CELL</h1>
+    <p class="subtitle">Sistem Kasir Pintar</p>
 
     <div class="status">
       <span class="dot"></span> Online & Ready
     </div>
 
-    <form id="loginForm">
+    <form>
       <label>Username</label>
-      <input id="username" type="text" value="admin" required>
+      <input type="text" value="admin" required>
 
       <label>Password</label>
       <div class="password-box">
-        <input id="password" type="password" required>
-        <span class="toggle" onclick="togglePassword()">👁</span>
+        <input type="password" value="admin123" id="password" required>
+        <span class="toggle" onclick="toggle()">👁</span>
       </div>
 
       <button type="submit">Masuk ke Sistem</button>
     </form>
 
-    <div class="footer">
-      © 2026 Developers By Danz Corleone
-    </div>
+    <footer>© 2026 Developers By Danz Corleone</footer>
 
   </div>
 </div>
 
-<script src="assets/js/core.js"></script>
-<script src="assets/js/login.js"></script>
-
 <script>
-function togglePassword(){
-  const p = document.getElementById("password");
-  p.type = p.type === "password" ? "text" : "password";
+function toggle(){
+  const p = document.getElementById('password');
+  p.type = p.type === 'password' ? 'text' : 'password';
 }
 </script>
 
