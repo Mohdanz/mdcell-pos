@@ -10,11 +10,11 @@
 
 body{
   margin:0;
-  background:linear-gradient(180deg,#020617,#0f172a);
+  background:linear-gradient(180deg,#020617,#0b1220);
   color:#e5e7eb;
 }
 
-/* HEADER */
+/* ===== HEADER ===== */
 .header{
   display:flex;
   justify-content:space-between;
@@ -48,38 +48,40 @@ body{
   font-size:13px;
 }
 
-/* CARD GRID */
+/* ===== CONTAINER ===== */
 .container{
   padding:16px;
+  max-width:1100px;
+  margin:auto;
 }
 
+/* ===== STAT GRID ===== */
 .grid{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:repeat(2,1fr);
   gap:14px;
 }
 
 .card{
-  background:rgba(15,23,42,.9);
+  background:rgba(15,23,42,.95);
   border-radius:18px;
   padding:16px;
   box-shadow:0 20px 50px rgba(0,0,0,.6);
 }
 
-.card h4{
-  margin:0 0 6px;
-  font-size:13px;
+.card small{
   color:#94a3b8;
+  font-size:12px;
 }
 
-.card .value{
+.card h3{
+  margin:6px 0 0;
   font-size:18px;
-  font-weight:700;
 }
 
 .green{color:#22c55e}
 
-/* NAV */
+/* ===== NAV ===== */
 .nav{
   display:flex;
   gap:10px;
@@ -89,7 +91,7 @@ body{
 .nav button{
   flex:1;
   padding:10px;
-  border-radius:12px;
+  border-radius:14px;
   border:none;
   background:#020617;
   color:#cbd5f5;
@@ -101,19 +103,20 @@ body{
   color:white;
 }
 
-/* SHIFT BOX */
+/* ===== SHIFT BOX ===== */
 .shift{
   margin-top:10px;
-  border-radius:20px;
+  border-radius:22px;
   padding:18px;
   border:2px solid #facc15;
   background:linear-gradient(180deg,#020617,#0b1220);
+  position:relative;
 }
 
-.shift h3{
-  margin:0;
+.shift h2{
   text-align:center;
   color:#facc15;
+  margin:0;
 }
 
 .shift p{
@@ -122,11 +125,24 @@ body{
   color:#94a3b8;
 }
 
+.start{
+  position:absolute;
+  top:14px;
+  right:14px;
+  background:#22c55e;
+  border:none;
+  color:#020617;
+  padding:8px 14px;
+  border-radius:14px;
+  font-weight:700;
+  font-size:12px;
+}
+
 .shift-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px;
-  margin-top:14px;
+  margin-top:16px;
 }
 
 .shift-card{
@@ -136,15 +152,11 @@ body{
   text-align:center;
 }
 
-.start{
-  float:right;
-  background:#22c55e;
-  border:none;
-  color:#020617;
-  padding:8px 14px;
-  border-radius:12px;
-  font-weight:700;
-  font-size:12px;
+/* ===== RESPONSIVE DESKTOP ===== */
+@media(min-width:768px){
+  .grid{
+    grid-template-columns:repeat(4,1fr);
+  }
 }
 </style>
 </head>
@@ -167,23 +179,23 @@ body{
 
   <div class="grid">
     <div class="card">
-      <h4>Saldo Awal</h4>
-      <div class="value">Rp 1.000.000</div>
+      <small>Saldo Awal</small>
+      <h3>Rp 1.000.000</h3>
     </div>
 
     <div class="card">
-      <h4>Uang Laci</h4>
-      <div class="value green">Rp 1.000.000</div>
+      <small>Uang Laci</small>
+      <h3 class="green">Rp 1.000.000</h3>
     </div>
 
     <div class="card">
-      <h4>E-Wallet</h4>
-      <div class="value">0 Akun</div>
+      <small>E-Wallet</small>
+      <h3>0 Akun</h3>
     </div>
 
     <div class="card">
-      <h4>Stok Item</h4>
-      <div class="value">0 Item</div>
+      <small>Stok Item</small>
+      <h3>0 Item</h3>
     </div>
   </div>
 
@@ -195,18 +207,18 @@ body{
 
   <div class="shift">
     <button class="start">▶ START</button>
-    <h3>SHIFT BELUM DIMULAI</h3>
+    <h2>SHIFT BELUM DIMULAI</h2>
     <p>Klik tombol START untuk memulai</p>
 
     <div class="shift-grid">
       <div class="shift-card">
-        <small style="color:#94a3b8">Shift Sebelumnya</small>
-        <h3>2</h3>
+        <small>Shift Sebelumnya</small>
+        <h3>1</h3>
       </div>
 
       <div class="shift-card">
-        <small style="color:#94a3b8">Saldo Awal</small>
-        <h3 class="green">Rp 1.000.000</h3>
+        <small>Saldo Awal</small>
+        <h3 class="green">Rp 0</h3>
       </div>
     </div>
   </div>
