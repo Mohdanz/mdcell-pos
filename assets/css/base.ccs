@@ -1,1 +1,24 @@
+/* base.css */
+:root {
+  --bg-main: #0b1220;
+  --bg-card: #111a2e;
+  --primary: #4f8cff;
+  --primary-grad: linear-gradient(135deg,#4f8cff,#7b5cff);
+  --success: #45d483;
+  --warning: #f5c542;
+  --danger: #ff5d5d;
+  --text-main: #e6ecff;
+  --text-muted: #9aa4c7;
+  --radius: 16px;
+}
 
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #16214a, #050810);
+  color: var(--text-main);
+}
