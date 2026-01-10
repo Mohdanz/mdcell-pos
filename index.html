@@ -8,6 +8,7 @@
 </head>
 
 <body>
+
 <div class="wrapper">
   <div class="card">
     <div class="icon">📱</div>
@@ -23,12 +24,24 @@
       <input type="text" id="username" required>
 
       <label>Password</label>
-      <input type="password" id="password" required>
+      <div class="password-box">
+        <input type="password" id="password" required>
+        <span class="toggle" onclick="togglePassword()">👁</span>
+      </div>
 
       <button type="submit">Masuk ke Sistem</button>
     </form>
 
     <div class="footer">© 2026 Developers By Danz Corleone</div>
+  </div>
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div class="popup-card">
+    <h3 id="popupTitle"></h3>
+    <p id="popupMsg"></p>
+    <button onclick="closePopup()">OK</button>
   </div>
 </div>
 
