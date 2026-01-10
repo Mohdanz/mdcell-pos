@@ -1,24 +1,56 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MD CELL | Login</title>
 <link rel="stylesheet" href="assets/css/login.css">
 </head>
+
 <body>
-<div class="card">
-  <h1>MD CELL</h1>
-  <p class="sub">Sistem Kasir Pintar</p>
-  <form id="loginForm">
-    <input id="username" placeholder="Username" required>
-    <input id="password" type="password" placeholder="Password" required>
-    <button>Masuk</button>
-  </form>
-  <div class="footer">© 2026 MD CELL</div>
+
+<div class="login-wrapper">
+  <div class="login-card">
+
+    <div class="logo">
+      <div class="logo-icon">📱</div>
+      <h1>MD CELL</h1>
+      <p>Sistem Kasir Pintar</p>
+    </div>
+
+    <div class="status">
+      <span class="dot"></span> Online & Ready
+    </div>
+
+    <form id="loginForm">
+      <label>Username</label>
+      <input id="username" type="text" value="admin" required>
+
+      <label>Password</label>
+      <div class="password-box">
+        <input id="password" type="password" required>
+        <span class="toggle" onclick="togglePassword()">👁</span>
+      </div>
+
+      <button type="submit">Masuk ke Sistem</button>
+    </form>
+
+    <div class="footer">
+      © 2026 Developers By Danz Corleone
+    </div>
+
+  </div>
 </div>
+
 <script src="assets/js/core.js"></script>
 <script src="assets/js/login.js"></script>
+
+<script>
+function togglePassword(){
+  const p = document.getElementById("password");
+  p.type = p.type === "password" ? "text" : "password";
+}
+</script>
+
 </body>
 </html>
