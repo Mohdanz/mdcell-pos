@@ -4,10 +4,22 @@
 <meta charset="UTF-8">
 <title>MD CELL | Admin Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link rel="stylesheet" href="assets/css/admin.css">
 <link rel="stylesheet" href="assets/css/components.css">
 </head>
+
 <body>
+
+<!-- ================== PROTEKSI LOGIN ADMIN ================== -->
+<script src="assets/js/core.js"></script>
+<script>
+const auth = DB.get("auth");
+if(!auth || auth.role !== "admin"){
+  location.href = "index.html";
+}
+</script>
+<!-- ========================================================== -->
 
 <header class="topbar">
   <div class="brand">
@@ -31,31 +43,31 @@
   </div>
   <div class="stat-card">
     <p>E-Wallet</p>
-    <h2>0 Akun</h2>
+    <h2 id="totalWallet">0 Akun</h2>
   </div>
   <div class="stat-card">
     <p>Stok Item</p>
-    <h2>0 Item</h2>
+    <h2 id="totalItem">0 Item</h2>
   </div>
 </section>
 
 <nav class="menu">
   <button class="active">Dashboard</button>
-  <button>Pengaturan</button>
-  <button>Rekap Data</button>
+  <button onclick="location.href='pengaturan.html'">Pengaturan</button>
+  <button onclick="location.href='rekap.html'">Rekap Data</button>
 </nav>
 
 <section class="shift-box">
   <div class="shift-header">
     <h2 id="shiftTitle">SHIFT BELUM DIMULAI</h2>
-    <button id="btnShift" class="btn-start">START</button>
+    <button id="btnShift" class="btn-start" onclick="handleShift()">START</button>
   </div>
-  <p class="shift-desc" id="shiftDesc">Klik tombol START untuk memulai</p>
+  <p class="shift-desc" id="shiftDesc">Klik tombol START untuk memulai shift</p>
 
   <div class="shift-info">
     <div>
-      <span>Shift Sebelumnya</span>
-      <strong id="shiftPrev">1</strong>
+      <span>Shift ID</span>
+      <strong id="shiftPrev">-</strong>
     </div>
     <div>
       <span>Saldo Awal</span>
@@ -65,48 +77,34 @@
 </section>
 
 <div class="actions">
-  <button onclick="exportRiwayatExcel()">Export Excel</button>
+  <button onclick="exportExcelMultiSheet()">Export Excel</button>
   <button class="logout" onclick="logout()">Logout</button>
 </div>
 
-<script src="assets/js/core.js"></script>
-<script src="assets/js/admin.js"></script>
-<script src="assets/js/export.js"></script>
-  <div class="popup-overlay" id="popupCloseShift">
+<!-- ================== POPUP TUTUP SHIFT ================== -->
+<div class="popup-overlay" id="popupCloseShift">
   <div class="popup-card">
 
-    <div class="popup-title">Tutup Shift #2</div>
+    <div class="popup-title">Tutup Shift</div>
 
     <div class="popup-row">
       <span>Saldo Awal</span>
-      <span>Rp 0</span>
+      <span id="rSaldoAwal">Rp 0</span>
     </div>
 
     <div class="popup-row">
-      <span>Transaksi Top Up</span>
-      <span>Rp 0</span>
+      <span>Total Transaksi</span>
+      <span id="rTotalTrx">0</span>
     </div>
-
-    <div class="popup-row">
-      <span>Transaksi Penarikan</span>
-      <span>Rp 0</span>
-    </div>
-
-    <div class="popup-row">
-      <span>Penjualan</span>
-      <span>Rp 0</span>
-    </div>
-
-    <hr class="popup-divider">
 
     <div class="popup-row">
       <strong>Total Income</strong>
-      <strong>Rp 0</strong>
+      <strong id="rIncome">Rp 0</strong>
     </div>
 
     <div class="popup-row">
       <span>Saldo Akhir</span>
-      <span>Rp 0</span>
+      <span id="rSaldoAkhir">Rp 0</span>
     </div>
 
     <div class="popup-footer">
@@ -116,5 +114,17 @@
 
   </div>
 </div>
+<!-- ====================================================== -->
+
+<!-- ================== SCRIPT ================== -->
+<script src="assets/js/admin.js"></script>
+<script src="assets/js/export.js"></script>
+<script src="assets/js/theme.js"></script>
+
+<script>
+renderAdminDashboard();
+</script>
+<!-- ============================================ -->
+
 </body>
 </html>
